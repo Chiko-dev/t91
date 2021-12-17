@@ -14,23 +14,25 @@ export default class Application extends EventEmitter {
     this._beat = new Beat();
 
     this.lyrics = ["Ah", "ha", "ha", "ha", "stayin' alive", "stayin' alive"];
-    let count = 0;
-
-
-
+    
+    this.count = 0;
+    
     this.emit(Application.events.READY);
    
-    this._beat.on(Beat.events.BIT, (lyrics) => {
-      this._create();
+    this._beat.on(Beat.events.BIT, () => {
+      
     });
-    
+    this._create();
   }
 
   _create() {
+    for (this.count; this.count < this.lyrics.length; this.count++){
       const message = document.createElement("div");
       message.classList.add("message");
-      message.innerText = this.lyrics;
+      
+      message.innerText = this.lyrics[this.count];
   
       document.querySelector(".main").appendChild(message);
+    }
   }
 }
